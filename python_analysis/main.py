@@ -2,8 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the sales dataset
-df = pd.read_csv("sales_analytics_dataset.csv")
+from pathlib import Path
 
+dataset_path = Path(__file__).resolve().parent.parent / "dataset" / "sales_analytics_dataset.csv"
+df = pd.read_csv(dataset_path)
 # Display the first five records
 print(df.head())
 
