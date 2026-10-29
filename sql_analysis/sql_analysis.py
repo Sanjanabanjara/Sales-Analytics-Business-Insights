@@ -1,9 +1,20 @@
-
 import sqlite3
 import pandas as pd
+from pathlib import Path
+
+# Project paths
+BASE_DIR = Path(__file__).resolve().parent.parent
+CSV_PATH = BASE_DIR / "dataset" / "sales_analytics_dataset.csv"
+DB_PATH = BASE_DIR / "sql_analysis" / "sales_analytics.db"
+
+# Load dataset
+df = pd.read_csv(CSV_PATH)
 
 # Connect to SQLite database
-conn = sqlite3.connect("sales_analytics.db")
+conn = sqlite3.connect(DB_PATH)
+
+# Create sales table from CSV
+df.to_sql("sales", conn, if_exists="replace", index=False)
 
 # SQL Query 1: Display first 5 records
 query = """
@@ -134,10 +145,10 @@ print(result7.to_string(index=False))
 
 
 # =====================================
-# SQL QUERY 9: TOP 5 PRODUCTS
+# SQL QUERY 8: TOP 5 PRODUCTS
 # =====================================
 
-query9 = """
+query8 = """
 SELECT
     Product,
     SUM(Quantity) AS Total_Quantity,
@@ -149,17 +160,17 @@ ORDER BY Total_Sales DESC
 LIMIT 5;
 """
 
-result9 = pd.read_sql_query(query9, conn)
+result8 = pd.read_sql_query(query8, conn)
 
 print("\n========== TOP 5 PRODUCTS ==========")
-print(result9.to_string(index=False))
+print(result8.to_string(index=False))
 
 
 # =====================================
-# SQL QUERY 10: SALES CHANNEL ANALYSIS
+# SQL QUERY 9: SALES CHANNEL ANALYSIS
 # =====================================
 
-query10 = """
+query9 = """
 SELECT
     Sales_Channel,
     COUNT(DISTINCT Order_ID) AS Total_Orders,
@@ -170,17 +181,17 @@ GROUP BY Sales_Channel
 ORDER BY Total_Sales DESC;
 """
 
-result10 = pd.read_sql_query(query10, conn)
+result9 = pd.read_sql_query(query9, conn)
 
 print("\n========== SALES CHANNEL ANALYSIS ==========")
-print(result10.to_string(index=False))
+print(result9.to_string(index=False))
 
 
 # =====================================
-# SQL QUERY 11: PAYMENT METHOD ANALYSIS
+# SQL QUERY 10: PAYMENT METHOD ANALYSIS
 # =====================================
 
-query11 = """
+query10 = """
 SELECT
     Payment_Method,
     COUNT(DISTINCT Order_ID) AS Total_Orders,
@@ -190,17 +201,17 @@ GROUP BY Payment_Method
 ORDER BY Total_Orders DESC;
 """
 
-result11 = pd.read_sql_query(query11, conn)
+result10 = pd.read_sql_query(query10, conn)
 
 print("\n========== PAYMENT METHOD ANALYSIS ==========")
-print(result11.to_string(index=False))
+print(result10.to_string(index=False))
 
 
 # =====================================
-# SQL QUERY 12: PROFIT MARGIN ANALYSIS
+# SQL QUERY 11: PROFIT MARGIN ANALYSIS
 # =====================================
 
-query12 = """
+query11 = """
 SELECT
     Category,
     ROUND(SUM(Sales), 2) AS Total_Sales,
@@ -214,10 +225,10 @@ GROUP BY Category
 ORDER BY Profit_Margin_Percent DESC;
 """
 
-result12 = pd.read_sql_query(query12, conn)
+result11 = pd.read_sql_query(query11, conn)
 
 print("\n========== CATEGORY PROFIT MARGIN ==========")
-print(result12.to_string(index=False))
+print(result11.to_string(index=False))
 
 
 # Close connection
