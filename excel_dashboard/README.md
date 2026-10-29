@@ -16,3 +16,8 @@
 
 ## Purpose
 To analyze sales performance and visualize business insights using an interactive Excel dashboard.
+
+## Dashboard Preview
+
+![Excel Sales Performance Dashboard](Excel_Dashboard.png)
+  
