@@ -25,3 +25,14 @@ To analyze sales performance, identify trends,
 and support data-driven business decisions
 using Power BI.
   
+
+## Dashboard Preview
+
+### 1. Sales Analytics Dashboard
+
+![Power BI Sales Analytics Dashboard](PowerBI_Dashboard.png)
+
+### 2. Business Insights Dashboard
+
+![Power BI Business Insights](PowerBI_Business_Insights.png)
+  
