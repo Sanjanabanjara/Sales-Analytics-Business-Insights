@@ -18,3 +18,10 @@ An end-to-end Data Analytics project focused on analyzing sales performance, ide
 
 ## Project Status
 🚧 In Progress — Project files and analysis will be added progressively.
+
+## Business Insights & Recommendations
+
+Explore the key findings, sales performance analysis,
+and actionable business recommendations.
+
+[View Business Insights & Recommendations](business_insights/README.md)
